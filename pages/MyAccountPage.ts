@@ -10,5 +10,4 @@ export class MyAccountPage {
     get changePasswordButton(){
         return  this.page.locator('.change-password');
     }
-
 } 
