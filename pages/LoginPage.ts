@@ -7,7 +7,7 @@ export class LoginPage {
         this.page = page;
     }
 
-    async register(firstName: string,lastName:string, email: string, password: string) {
+    async register(firstName:string, lastName:string, email:string, password:string) {
         await this.page.type('#firstname', firstName);
         await this.page.type('#lastname', lastName);
         await this.page.type('#email_address', email);
@@ -15,21 +15,19 @@ export class LoginPage {
         await this.page.type('#password-confirmation', password);
         await this.page.click('.primary .submit');
     }
-    
-    async logout(){
-        await this.page.locator('.panel .customer-welcome').click();
-        await this.page.locator('.active li').filter({ hasText: 'Sign Out' }).click();
+
+    async login(email:string, password:string) {
+        await this.page.fill('#email', email);
+        await this.page.type('.page-wrapper #pass', password);
+        await this.page.click('.action.login');
     }
-    
+
     get CreateAnAccountButton(){
         return this.page.locator('.panel.wrapper li').filter({ hasText: 'Create an Account' });
     }
 
-    get registrationMessage(){
+    get systemMessage(){
         return this.page.locator('.page.messages');
     }
 
-    get logoutMessage(){
-        return  this.page.locator('.page-title-wrapper');
-    }
 } 
