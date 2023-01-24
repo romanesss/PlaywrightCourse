@@ -30,4 +30,8 @@ export class LoginPage {
         return this.page.locator('.page.messages');
     }
 
+    get logoutMessage(){
+        return  this.page.locator('.page-title-wrapper');
+    }
+
 } 

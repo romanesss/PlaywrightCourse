@@ -1,13 +1,14 @@
 import { Page } from '@playwright/test';
 
-export class LogoutPage {
+export class ShoppingCartPage {
     readonly page: Page;
     
     constructor(page: Page) {
         this.page = page;
     }
 
-    get logoutMessage(){
-        return  this.page.locator('.page-title-wrapper');
+    get itemInfoLabel () {
+        return this.page.locator('.item-options dd');
     }
-} 
+   
+}
