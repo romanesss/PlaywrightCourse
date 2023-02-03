@@ -198,6 +198,7 @@ test.describe('group scenarios', () => {
     let mostExpensiveName = await ecoFriendlyPage.productName.first().textContent()
     await ecoFriendlyPage.productName.first().click();
     // select color and size > add to card
+    await page.waitForLoadState();
     await itemViewPage.blackColorButton.click();
     await itemViewPage.xsSizeButton.click();
     await itemViewPage.addToCardButton.click();
@@ -223,6 +224,7 @@ test.describe('group scenarios', () => {
     // check image, price, review
     await page.goto('https://magento.softwaretestingboard.com/sale.html');
     await salePage.womansTeesButton.click();
+    await page.waitForLoadState();
     await expect (teesPage.itemImg).toHaveCount(12);
     await expect (teesPage.itemPrice).toHaveCount(12);
     await expect (teesPage.itemReviews).toHaveCount(12);
@@ -259,6 +261,8 @@ test.describe('group scenarios', () => {
     // check product name sorting
     await page.waitForLoadState();
     await bagsPage.sortBy.selectOption('Product Name');
+    await page.waitForLoadState();
+    await bagsPage.showPerPageLimiter.selectOption('24');
     await expect(bagsPage.productName.first()).toHaveText('Wayfarer Messenger Bag');
     await expect(bagsPage.productName.last()).toHaveText('Compete Track Tote');
     await page.waitForLoadState();
@@ -291,7 +295,7 @@ test.describe('group scenarios', () => {
     await expect(orderInformationPage.errorSystemMessage).toHaveText('You entered incorrect data. Please try again.');
   });
 
-  test('10 scenario - ubmit the form with any random data', async ({ page }) => {
+  test('10 scenario - submit the form with any random data', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const advancedSearchPage = new AdvancedSearchPage(page);
 
